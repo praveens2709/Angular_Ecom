@@ -1,0 +1,99 @@
+{
+  "auth": [
+    {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "password"
+    }
+  ],
+  "categories": [
+    {
+      "id": "eba7",
+      "name": "Electronics",
+      "status": "ACTIVE",
+      "productCount": 3
+    },
+    {
+      "id": "1b2c",
+      "name": "Books",
+      "status": "ACTIVE",
+      "productCount": 0
+    }
+  ],
+  "products": [
+    {
+      "name": "Camera",
+      "category": "Electronics",
+      "price": 30000,
+      "inventoryStatus": "INSTOCK",
+      "image": "assets/images/camera.jpg",
+      "id": "1"
+    },
+    {
+      "name": "Echo Dot",
+      "category": "Electronics",
+      "price": 2300,
+      "inventoryStatus": "LOWSTOCK",
+      "image": "assets/images/echo dot.webp",
+      "id": "3"
+    },
+    {
+      "name": "Remote",
+      "category": "Electronics",
+      "price": 699,
+      "inventoryStatus": "INSTOCK",
+      "image": "assets/images/remote.jpg",
+      "id": "4"
+    },
+    {
+      "name": "DS",
+      "category": "Books",
+      "price": 100,
+      "inventoryStatus": "OUTOFSTOCK",
+      "image": "assets/images/ds-logo.png",
+      "id": "5"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "gender": "Male",
+      "active": true
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "gender": "Female",
+      "active": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "customerName": "John Doe",
+      "orderDate": "2024-12-01",
+      "totalAmount": 120.5,
+      "status": "Delivered"
+    },
+    {
+      "id": "2",
+      "customerName": "Jane Smith",
+      "orderDate": "2024-12-03",
+      "totalAmount": 75,
+      "status": "Cancelled"
+    },
+    {
+      "id": "3",
+      "customerName": "Alice Brown",
+      "orderDate": "2024-12-05",
+      "totalAmount": 200,
+      "status": "Delivered"
+    }
+  ]
+}
