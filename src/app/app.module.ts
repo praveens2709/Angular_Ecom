@@ -10,7 +10,6 @@ import { CategoriesComponent } from './Admin/Modules/categories/categories.compo
 import { AuthComponent } from './Admin/auth/auth.component';
 import { HomeComponent } from './Public/Modules/home/home.component';
 import { CartComponent } from './Public/Modules/cart/cart.component';
-import { ProfileComponent } from './Public/Modules/profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
@@ -38,6 +37,13 @@ import { SidenavComponent } from './Admin/Modules/sidenav/sidenav.component';
 import { OrdersComponent } from './Admin/Modules/orders/orders.component';
 import { RegisterComponent } from './Public/auth/register/register.component';
 import { LoginComponent } from './Public/auth/login/login.component';
+import { HeaderComponent } from './Public/Modules/header/header.component';
+import { AccountComponent } from './Public/Modules/account/account.component';
+import { ProductComponent } from './Public/Modules/product/product.component';
+import { CommonBannerComponent } from './Public/Modules/common-banner/common-banner.component';
+import { AccordionModule } from 'primeng/accordion';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -50,13 +56,16 @@ import { LoginComponent } from './Public/auth/login/login.component';
     CategoriesComponent,
     HomeComponent,
     CartComponent,
-    ProfileComponent,
     AuthComponent,
     BodyComponent,
     SidenavComponent,
     OrdersComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent,
+    AccountComponent,
+    ProductComponent,
+    CommonBannerComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +89,10 @@ import { LoginComponent } from './Public/auth/login/login.component';
     RatingModule,
     DialogModule,
     SidebarModule,
-    AvatarModule
+    AvatarModule,
+    AccordionModule,
+    CheckboxModule,
+    PaginatorModule
   ],
   providers: [
     MessageService,

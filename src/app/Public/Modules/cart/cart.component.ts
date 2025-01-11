@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-
+  cartCount: number = 5;
 }

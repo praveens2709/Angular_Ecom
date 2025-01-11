@@ -10,49 +10,35 @@
   "categories": [
     {
       "id": "eba7",
-      "name": "Electronics",
+      "name": "Men's Clothing",
       "status": "ACTIVE",
       "productCount": 3
-    },
-    {
-      "id": "1b2c",
-      "name": "Books",
-      "status": "ACTIVE",
-      "productCount": 0
     }
   ],
   "products": [
     {
-      "name": "Camera",
-      "category": "Electronics",
-      "price": 30000,
+      "name": "Men's Cotton T-shirt",
+      "category": "Men's Clothing",
+      "price": 799,
       "inventoryStatus": "INSTOCK",
-      "image": "assets/images/camera.jpg",
+      "image": "assets/images/product.png",
       "id": "1"
     },
     {
-      "name": "Echo Dot",
-      "category": "Electronics",
-      "price": 2300,
-      "inventoryStatus": "LOWSTOCK",
-      "image": "assets/images/echo dot.webp",
-      "id": "3"
-    },
-    {
-      "name": "Remote",
-      "category": "Electronics",
-      "price": 699,
+      "name": "Men's Cotton T-shirt",
+      "category": "Men's Clothing",
+      "price": 499,
       "inventoryStatus": "INSTOCK",
-      "image": "assets/images/remote.jpg",
-      "id": "4"
+      "image": "assets/images/product2.png",
+      "id": "2"
     },
     {
-      "name": "DS",
-      "category": "Books",
-      "price": 100,
-      "inventoryStatus": "OUTOFSTOCK",
-      "image": "assets/images/ds-logo.png",
-      "id": "5"
+      "name": "Men's Cotton T-shirt",
+      "category": "Men's Clothing",
+      "price": 999,
+      "inventoryStatus": "INSTOCK",
+      "image": "assets/images/product3.png",
+      "id": "3"
     }
   ],
   "users": [

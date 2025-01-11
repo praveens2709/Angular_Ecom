@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Modules/home/home.component';
-import { ProductsComponent } from './Modules/products/products.component';
-import { CategoriesComponent } from './Modules/categories/categories.component';
 import { CartComponent } from './Modules/cart/cart.component';
-import { ProfileComponent } from './Modules/profile/profile.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AccountComponent } from './Modules/account/account.component';
+import { ProductComponent } from './Modules/product/product.component';
 
 const routes: Routes = [
   // Public login and register routes
   {
-    path: 'home',
+    path: 'login',
     component: LoginComponent,
   },
   {
@@ -21,29 +20,25 @@ const routes: Routes = [
 
   // Public-facing modules (user website)
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'products',
-    component: ProductsComponent,
-  },
-  {
-    path: 'categories',
-    component: CategoriesComponent,
+    path: 'shop',
+    component: ProductComponent,
   },
   {
     path: 'cart',
     component: CartComponent,
   },
   {
-    path: 'profile',
-    component: ProfileComponent,
+    path: 'account',
+    component: AccountComponent,
   },
   // Catch-all route for public pages
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'home',
   },
 ];
 

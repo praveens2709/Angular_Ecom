@@ -64,5 +64,11 @@
 }
 
 .image-preview img {
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.product-img{
+  width: 100px;
+  height: 80px;
+  object-fit: contain;
 }
