@@ -5,66 +5,40 @@
   <div class="row">
     <!-- Filters Section -->
     <div class="col-lg-3 shop-left">
-      <form class="d-flex align-items-center justify-content-between gap-3">
-        <input
-          pInputText
-          type="text"
-          placeholder="Search"
-          class="px-2 py-1 w-100"
-        />
-        <button
-          pButton
-          type="submit"
-          class="p-button-text rounded-circle end-0 search-btn"
-        >
+      <form class="d-flex align-items-center justify-content-between gap-3" (ngSubmit)="applyFilters()">
+        <input pInputText type="text" placeholder="Search" class="px-2 py-1 w-100" [(ngModel)]="searchQuery"
+          name="searchQuery" />
+        <button pButton type="submit" class="p-button-text rounded-circle end-0 search-btn" (click)="onSearchClick()">
           <i class="pi pi-search"></i>
         </button>
       </form>
-      <div
-        class="mt-4 py-1 px-3 acc-heading d-flex align-items-center justify-content-between"
-      >
+      <div class="mt-4 py-1 px-3 acc-heading d-flex align-items-center justify-content-between">
         <h5 class="mb-0">Filters</h5>
-        <button pButton class="p-button-text p-0 end-0">
+        <button pButton class="p-button-text p-0 end-0" (click)="clearFilters()">
           <p class="mb-0 fw-medium">Clear all</p>
         </button>
       </div>
       <!-- Categories Filter -->
-      <!-- Categories Filter -->
       <p-accordion>
         <p-accordionTab header="Categories">
           <ul class="list-unstyled mb-0">
-            <li
-              *ngFor="let category of categories"
-              class="pb-2 d-flex align-items-center gap-2"
-            >
-              <p-checkbox
-                binary="true"
-                [ngModel]="isCategorySelected(category.name)"
-                (onChange)="toggleCategory(category.name)"
-              >
+            <li *ngFor="let category of categories" class="pb-2 d-flex align-items-center gap-2">
+              <p-checkbox binary="true" [ngModel]="isCategorySelected(category.name)"
+                (onChange)="toggleCategory(category.name)">
               </p-checkbox>
               <span>{{ category.name }}</span>
             </li>
           </ul>
         </p-accordionTab>
-
         <!-- Price Filter -->
         <p-accordionTab header="Price">
           <ul class="list-unstyled mb-0">
-            <li
-              *ngFor="let filter of priceFilters"
-              class="pb-2 d-flex align-items-center gap-2"
-            >
-              <p-checkbox
-                binary="true"
-                [ngModel]="isPriceFilterSelected(filter)"
-                (onChange)="togglePriceFilter(filter)"
-              >
+            <li *ngFor="let filter of priceFilters" class="pb-2 d-flex align-items-center gap-2">
+              <p-checkbox binary="true" [ngModel]="isPriceFilterSelected(filter)"
+                (onChange)="togglePriceFilter(filter)">
               </p-checkbox>
-              <span
-                >{{ filter.min }} -
-                {{ filter.max === maxPrice ? "Above" : filter.max }}</span
-              >
+              <span>{{ filter.min }} -
+                {{ filter.max === maxPrice ? "Above" : filter.max }}</span>
             </li>
           </ul>
         </p-accordionTab>
@@ -72,50 +46,29 @@
     </div>
     <!-- Product List Section -->
     <div class="col-lg-9 shop-right">
-      <div
-        class="product-topbar d-flex justify-content-between align-items-center"
-      >
+      <div class="product-topbar d-flex justify-content-between align-items-center">
         <p class="mb-0">{{ getDisplayedRange() }}</p>
         <div class="d-flex justify-content-between align-items-center">
           <p class="mb-0">Sort by Price:</p>
           &nbsp;
-          <p-dropdown
-            [options]="sortOptions"
-            [(ngModel)]="selectedSort"
-            placeholder="Low to High"
-            (onChange)="applyFilters()"
-          ></p-dropdown>
+          <p-dropdown [options]="sortOptions" [(ngModel)]="selectedSort" placeholder="Low to High"
+            (onChange)="applyFilters()"></p-dropdown>
         </div>
       </div>
       <div class="row">
-        <div
-          class="col-lg-3 d-flex justify-content-center animated mt-3"
-          *ngFor="let product of paginatedProducts"
-        >
-          <a
-            [routerLink]="['/product-detail']"
-            class="product position-relative"
-          >
+        <div class="col-lg-3 d-flex justify-content-center animated mt-3" *ngFor="let product of paginatedProducts">
+          <a [routerLink]="['/product-detail']" class="product position-relative">
             <div class="product-img p-2 w-100">
-              <img
-                [src]="product.image"
-                alt="product image"
-                class="w-100 h-100"
-              />
+              <img [src]="product.image" alt="product image" class="w-100 h-100" />
             </div>
-            <div
-              class="product-content d-flex justify-content-between align-items-center mt-2"
-            >
+            <div class="product-content d-flex justify-content-between align-items-center mt-2">
               <div class="flex-column w-100">
                 <h6 class="product-name">{{ product.name }}</h6>
                 <h5 class="price mb-0">
                   {{ product.price | currency : "INR" }}
                 </h5>
               </div>
-              <div
-                class="shopping-bag-icon position-absolute"
-                style="bottom: 45px; right: 5px"
-              >
+              <div class="shopping-bag-icon position-absolute" style="bottom: 45px; right: 5px">
                 <p-button icon="pi pi-shopping-bag"></p-button>
               </div>
             </div>
@@ -124,11 +77,7 @@
       </div>
       <!-- Pagination -->
       <div class="divider3"></div>
-      <p-paginator
-        [rows]="rowsPerPage"
-        [totalRecords]="totalProducts"
-        (onPageChange)="onPageChange($event)"
-      >
+      <p-paginator [rows]="rowsPerPage" [totalRecords]="totalProducts" (onPageChange)="onPageChange($event)">
       </p-paginator>
     </div>
   </div>

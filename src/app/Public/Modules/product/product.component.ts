@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit {
   paginatedProducts: any[] = [];
   selectedCategories: string[] = [];
   selectedPriceFilters: { min: number; max: number }[] = [];
+  searchQuery: string = '';
   maxPrice: number = Infinity;
 
   priceFilters: { min: number; max: number }[] = [
@@ -77,7 +78,12 @@ export class ProductComponent implements OnInit {
               product.price >= filter.min && product.price <= filter.max
           );
 
-        return matchesCategory && matchesPrice;
+        const matchesSearch =
+          this.searchQuery === '' ||
+          product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          product.category.toLowerCase().includes(this.searchQuery.toLowerCase());
+
+        return matchesCategory && matchesPrice && matchesSearch;
       })
       .sort((a, b) =>
         this.selectedSort === 'low-to-high' ? a.price - b.price : b.price - a.price
@@ -125,10 +131,10 @@ export class ProductComponent implements OnInit {
       (selectedFilter) =>
         selectedFilter.min === filter.min && selectedFilter.max === filter.max
     );
-    if (index > -1) {
-      this.selectedPriceFilters.splice(index, 1);
-    } else {
+    if (index === -1) {
       this.selectedPriceFilters.push(filter);
+    } else {
+      this.selectedPriceFilters.splice(index, 1);
     }
     this.applyFilters();
   }
@@ -142,5 +148,16 @@ export class ProductComponent implements OnInit {
       (selectedFilter) =>
         selectedFilter.min === filter.min && selectedFilter.max === filter.max
     );
+  }
+
+  clearFilters(): void {
+    this.searchQuery = '';
+    this.selectedCategories = [];
+    this.selectedPriceFilters = [];
+    this.applyFilters();
+  }
+
+  onSearchClick(): void {
+    this.applyFilters();
   }
 }
