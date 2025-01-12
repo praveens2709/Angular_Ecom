@@ -5,7 +5,7 @@ import { CategoriesService } from '../../../Admin/Modules/categories/categories.
 @Component({
   selector: 'app-product',
   standalone: false,
-  
+
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
@@ -15,15 +15,18 @@ export class ProductComponent implements OnInit {
   categories: any[] = [];
   filteredProducts: any[] = [];
   paginatedProducts: any[] = [];
-  selectedCategory: string | null = null;
+  selectedCategories: string[] = [];
+  selectedPriceFilters: { min: number; max: number }[] = [];
+  maxPrice: number = Infinity;
+
   priceFilters: { min: number; max: number }[] = [
     { min: 0, max: 500 },
     { min: 500, max: 1000 },
     { min: 1000, max: 5000 },
     { min: 5000, max: 10000 },
-    { min: 10000, max: Infinity },
+    { min: 10000, max: this.maxPrice },
   ];
-  selectedPriceFilter: { min: number; max: number } | null = null;
+
   sortOptions = [
     { label: 'Low to High', value: 'low-to-high' },
     { label: 'High to Low', value: 'high-to-low' },
@@ -42,38 +45,43 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.fetchProducts();
     this.fetchCategories();
+    this.applyFilters();
   }
 
   fetchProducts(): void {
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
-      this.filteredProducts = data;
-      this.totalProducts = this.filteredProducts.length;
-      this.updatePaginatedProducts();
+      this.applyFilters();
     });
   }
 
   fetchCategories(): void {
     this.categoriesService.getCategories().subscribe((data) => {
-      this.categories = data.filter((category) => category.status === 'ACTIVE');
+      this.categories = data
+        .filter((category) => category.status === 'ACTIVE')
+        .map((category) => ({ ...category, selected: false }));
     });
   }
 
   applyFilters(): void {
     this.filteredProducts = this.products
       .filter((product) => {
-        return (
-          (!this.selectedCategory || product.category === this.selectedCategory) &&
-          (!this.selectedPriceFilter ||
-            (product.price >= this.selectedPriceFilter.min &&
-              product.price <= this.selectedPriceFilter.max))
-        );
+        const matchesCategory =
+          this.selectedCategories.length === 0 ||
+          this.selectedCategories.includes(product.category);
+
+        const matchesPrice =
+          this.selectedPriceFilters.length === 0 ||
+          this.selectedPriceFilters.some(
+            (filter) =>
+              product.price >= filter.min && product.price <= filter.max
+          );
+
+        return matchesCategory && matchesPrice;
       })
-      .sort((a, b) => {
-        return this.selectedSort === 'low-to-high'
-          ? a.price - b.price
-          : b.price - a.price;
-      });
+      .sort((a, b) =>
+        this.selectedSort === 'low-to-high' ? a.price - b.price : b.price - a.price
+      );
 
     this.totalProducts = this.filteredProducts.length;
     this.currentPage = 0;
@@ -84,11 +92,11 @@ export class ProductComponent implements OnInit {
     if (this.totalProducts === 0) {
       return 'Showing 0 of 0 results';
     }
-  
+
     const start = this.currentPage * this.rowsPerPage + 1;
     const end = Math.min((this.currentPage + 1) * this.rowsPerPage, this.totalProducts);
     return `Showing ${start}-${end} of ${this.totalProducts} results`;
-  }  
+  }
 
   updatePaginatedProducts(): void {
     const start = this.currentPage * this.rowsPerPage;
@@ -102,13 +110,37 @@ export class ProductComponent implements OnInit {
     this.updatePaginatedProducts();
   }
 
-  selectCategory(category: string): void {
-    this.selectedCategory = category;
+  toggleCategory(category: string): void {
+    const index = this.selectedCategories.indexOf(category);
+    if (index === -1) {
+      this.selectedCategories.push(category);
+    } else {
+      this.selectedCategories.splice(index, 1);
+    }
     this.applyFilters();
   }
 
-  selectPriceFilter(filter: { min: number; max: number }): void {
-    this.selectedPriceFilter = filter;
+  togglePriceFilter(filter: { min: number; max: number }): void {
+    const index = this.selectedPriceFilters.findIndex(
+      (selectedFilter) =>
+        selectedFilter.min === filter.min && selectedFilter.max === filter.max
+    );
+    if (index > -1) {
+      this.selectedPriceFilters.splice(index, 1);
+    } else {
+      this.selectedPriceFilters.push(filter);
+    }
     this.applyFilters();
+  }
+
+  isCategorySelected(category: string): boolean {
+    return this.selectedCategories.includes(category);
+  }
+
+  isPriceFilterSelected(filter: { min: number; max: number }): boolean {
+    return this.selectedPriceFilters.some(
+      (selectedFilter) =>
+        selectedFilter.min === filter.min && selectedFilter.max === filter.max
+    );
   }
 }
