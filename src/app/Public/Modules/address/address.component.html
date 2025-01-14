@@ -1,0 +1,112 @@
+<app-cart-header></app-cart-header>
+
+<div class="cart-body animate three fadeInUp">
+  <div class="container-fluid">
+    <div class="row px-lg-5">
+      <!-- Left Column - Address Section -->
+      <div class="col-lg-8 border-end">
+        <div class="cart-left">
+          <div class="address-section d-flex flex-column gap-2">
+            <!-- Select Delivery Address Section -->
+            <div class="mt-3 d-flex justify-content-between align-items-center">
+              <h6 class="mb-0">Select Delivery Address</h6>
+              <div class="d-flex align-items-center gap-1 add-address cursor-pointer py-1 px-2">
+                <i class="pi pi-plus" style="font-size: 12px;"></i> ADD NEW ADDRESS
+              </div>
+            </div>
+            <span class="fw-semibold">DEFAULT ADDRESS</span>
+            <div class="profile-box pt-2 px-2">
+              <div class="d-flex gap-2 align-items-center mb-2">
+                <p-radioButton 
+                  name="address" 
+                  [(ngModel)]="selectedAddress" 
+                  value="address1"
+                ></p-radioButton>
+                <p class="fw-semibold mb-0">Praveen Sharma</p>
+                <span class="px-1 rounded-4 address-type">Home</span>
+              </div>
+              <div class="ps-4 address-font pb-2 border-bottom">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <p class="text-dark mb-0">275-A Bapunagar Jhalamand Circle,</p>
+                    <p class="text-dark mb-0">Jodhpur, Rajasthan - 342005</p>
+                    <p class="text-dark my-2">Mobile: 9116577183</p>
+                    <p class="mb-1 dark fw-semibold">Pay on Delivery available*</p>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-evenly">
+                <button class="border-0 bg-transparent">EDIT</button>
+                <span class="fs-4 fw-lighter mb-1">|</span>
+                <button class="border-0 bg-transparent">REMOVE</button>
+              </div>
+            </div>
+
+            <!-- Additional Address Example -->
+            <div class="profile-box pt-2 px-2">
+              <div class="d-flex gap-2 align-items-center mb-2">
+                <p-radioButton 
+                  name="address" 
+                  [(ngModel)]="selectedAddress" 
+                  value="address2"
+                ></p-radioButton>
+                <p class="fw-semibold mb-0">Praveen Sharma</p>
+                <span class="px-1 rounded-4 address-type">Office</span>
+              </div>
+              <div class="ps-4 address-font pb-2 border-bottom">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <p class="text-dark mb-0">Mentem Technologies</p>
+                    <p class="text-dark mb-0">Sardarpura B Road, Jodhpur, Rajasthan - 342005</p>
+                    <p class="text-dark my-2">Mobile: 9116577183</p>
+                    <p class="mb-1 dark fw-semibold">Pay on Delivery available*</p>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-evenly">
+                <button class="border-0 bg-transparent">EDIT</button>
+                <span class="fs-4 fw-lighter mb-1">|</span>
+                <button class="border-0 bg-transparent">REMOVE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Delivery and Price Details -->
+      <div class="col-lg-4">
+        <div class="cart-right">
+          <h6 class="mb-2 fw-bold text-uppercase">Delivery Estimates</h6>
+          <div class="address-delivery d-flex align-items-center gap-2 mb-3">
+            <img src="assets/images/product.png" alt="product" class="product-img" />
+            <p class="fw-normal mb-0">Estimated delivery by <b>29 May 2024</b></p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <h6 class="mb-2 fw-bold">PRICE DETAILS</h6>
+            <h6 class="fw-semibold">(2 Items)</h6>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-3">
+            <span class="fw-medium">Total MRP</span><span class="span">₹1598</span>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <span class="fw-medium">Discount on MRP</span><span class="span red">- ₹600</span>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <span class="fw-medium">Platform Fee</span><span class="span red">Free</span>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2 pb-3 border-bottom">
+            <span class="fw-medium">Shipping Fee</span><span class="span red">Free</span>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-2">
+            <span class="total-amount fw-semibold">Total Amount</span><span class="fw-bold span2 blue">₹ 998</span>
+          </div>
+          <a routerLink="/payment">
+            <button type="button" class="w-100 btn btn-primary">CONTINUE</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-cart-footer></app-cart-footer> -->

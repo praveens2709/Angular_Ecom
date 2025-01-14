@@ -238,3 +238,88 @@ body{
   background: #e0465a36;
   border-color: #e0465a36;
 }
+
+/* Shared Styles for p-checkbox and p-radioButton */
+.p-checkbox .p-checkbox-box,
+.p-radiobutton .p-radiobutton-box {
+  transition: none !important;
+  box-shadow: none !important;
+}
+
+.p-checkbox-box.p-highlight,
+.p-radiobutton-box.p-highlight {
+  background: #992603 !important;
+  border-color: #992603 !important;
+}
+
+.p-checkbox-box,
+.p-radiobutton-box {
+  border-color: #ccc !important;
+}
+
+.p-checkbox-box:hover,
+.p-radiobutton-box:hover {
+  border-color: #992603 !important;
+}
+
+
+/* Cart Body */
+.cart-body {
+  padding: 3rem 6rem;
+}
+
+.cart-right h6 {
+  /* font-family: "Josefin sans", serif; */
+  font-size: 15px;
+  color: #505050;
+  padding-top: 11.3px;
+}
+
+.cart-right span {
+  /* font-family: "Josefin sans", serif; */
+  font-size: 14px;
+  color: #5b5b5b;
+}
+
+.cart-right .span {
+  /* font-family: Assistant, Helvetica, Arial, sans-serif !important; */
+  font-size: 14px;
+  color: #5b5b5b;
+  margin-top: -4px;
+}
+
+.cart-right .red {
+  color: #dc3545;
+}
+
+.cart-right .total-amount {
+  /* font-family: "Josefin sans", serif; */
+  font-size: 17px;
+  color: #444444;
+}
+
+.cart-right .span2 {
+  /* font-family: Assistant, Helvetica, Arial, sans-serif !important; */
+  font-size: 15px;
+  color: #444444;
+  margin-top: -5px;
+  letter-spacing: 0.7px;
+}
+
+.cart-right button {
+  /* font-family: "Josefin sans", serif; */
+  font-size: 15px;
+  background: rgb(183, 29, 12);
+  color: #ffffff;
+  border-radius: 2px;
+  line-height: 16px;
+  margin-top: 15px;
+  letter-spacing: 1px;
+  padding: 10px 0 8px;
+  border: none;
+  font-weight: 600;
+}
+
+.cart-right button:hover {
+  background-color: #992603;
+}

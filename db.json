@@ -23,31 +23,31 @@
   ],
   "products": [
     {
+      "id": "1",
       "name": "Men's Cotton T-shirt",
       "category": "Men's Clothing",
       "price": 799,
       "inventoryStatus": "INSTOCK",
       "image": "assets/images/product.png",
-      "description": "A premium quality cotton t-shirt for men.",
-      "id": "1"
+      "description": "A premium quality cotton t-shirt for men."
     },
     {
+      "id": "2",
       "name": "Men's Cotton T-shirt",
       "category": "Men's Clothing",
       "price": 499,
       "inventoryStatus": "INSTOCK",
       "image": "assets/images/product2.png",
-      "description": "A premium quality cotton t-shirt for men.",
-      "id": "2"
+      "description": "A premium quality cotton t-shirt for men."
     },
     {
+      "id": "3",
       "name": "Men's Cotton T-shirt",
       "category": "Men's Clothing",
       "price": 999,
       "inventoryStatus": "LOWSTOCK",
       "description": "A premium quality cotton t-shirt for men.",
-      "image": "assets/images/product3.png",
-      "id": "3"
+      "image": "assets/images/product3.png"
     },
     {
       "id": "4",
@@ -59,13 +59,13 @@
       "description": "A premium quality cotton t-shirt for women."
     },
     {
+      "id": "5",
       "name": "Women's Cotton T-shirt",
       "category": "Women's Clothing",
       "price": 899,
       "inventoryStatus": "OUTOFSTOCK",
       "description": "A premium quality cotton t-shirt for women.",
-      "image": "assets/images/product5.png",
-      "id": "5"
+      "image": "assets/images/product5.png"
     }
   ],
   "users": [
@@ -73,19 +73,88 @@
       "id": "1",
       "firstName": "John",
       "lastName": "Doe",
+      "fullName": "John Doe",
       "email": "john.doe@example.com",
       "gender": "Male",
-      "active": true
+      "active": true,
+      "mobile": "1234567890",
+      "addresses": [
+        {
+          "id": "a1",
+          "fullName": "John Doe",
+          "street": "123 Main Street",
+          "city": "Springfield",
+          "state": "IL",
+          "postalCode": "62701",
+          "country": "USA",
+          "type": "Home",
+          "mobile": "1234567890"
+        },
+        {
+          "id": "a2",
+          "fullName": "John Doe",
+          "street": "456 Elm Street",
+          "city": "Springfield",
+          "state": "IL",
+          "postalCode": "62702",
+          "country": "USA",
+          "type": "Work",
+          "mobile": "1234567890"
+        }
+      ],
+      "cards": [
+        {
+          "id": "c1",
+          "cardHolderName": "John Doe",
+          "cardNumber": "4242424242424242",
+          "expiryMonth": "12",
+          "expiryYear": "2025",
+          "cardType": "VISA"
+        },
+        {
+          "id": "c2",
+          "cardHolderName": "John Doe",
+          "cardNumber": "5555555555554444",
+          "expiryMonth": "06",
+          "expiryYear": "2026",
+          "cardType": "MasterCard"
+        }
+      ]
     },
     {
       "id": "2",
       "firstName": "Jane",
       "lastName": "Smith",
+      "fullName": "Jane Smith",
       "email": "jane.smith@example.com",
       "gender": "Female",
-      "active": true
+      "active": true,
+      "mobile": "9876543210",
+      "addresses": [
+        {
+          "id": "a3",
+          "fullName": "Jane Smith",
+          "street": "789 Oak Avenue",
+          "city": "Shelbyville",
+          "state": "IL",
+          "postalCode": "62565",
+          "country": "USA",
+          "type": "Home",
+          "mobile": "9876543210"
+        }
+      ],
+      "cards": [
+        {
+          "id": "c3",
+          "cardHolderName": "Jane Smith",
+          "cardNumber": "6011111111111117",
+          "expiryMonth": "03",
+          "expiryYear": "2027",
+          "cardType": "Discover"
+        }
+      ]
     }
-  ],
+  ],  
   "orders": [
     {
       "id": "1",

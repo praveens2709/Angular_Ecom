@@ -45,6 +45,11 @@ import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProductDetailsComponent } from './Public/Modules/product-details/product-details.component';
+import { CartHeaderComponent } from './Public/Modules/cart-header/cart-header.component';
+import { AddressComponent } from './Public/Modules/address/address.component';
+import { PaymentComponent } from './Public/Modules/payment/payment.component';
+import { PanelModule } from 'primeng/panel';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -67,7 +72,10 @@ import { ProductDetailsComponent } from './Public/Modules/product-details/produc
     AccountComponent,
     ProductComponent,
     CommonBannerComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartHeaderComponent,
+    AddressComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +102,9 @@ import { ProductDetailsComponent } from './Public/Modules/product-details/produc
     AvatarModule,
     AccordionModule,
     CheckboxModule,
-    PaginatorModule
+    PaginatorModule,
+    PanelModule,
+    RadioButtonModule
   ],
   providers: [
     MessageService,

@@ -7,6 +7,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './Modules/account/account.component';
 import { ProductComponent } from './Modules/product/product.component';
 import { ProductDetailsComponent } from './Modules/product-details/product-details.component';
+import { AddressComponent } from './Modules/address/address.component';
+import { PaymentComponent } from './Modules/payment/payment.component';
 
 const routes: Routes = [
   // Public login and register routes
@@ -33,12 +35,20 @@ const routes: Routes = [
     component: ProductDetailsComponent,
   },
   {
+    path: 'account',
+    component: AccountComponent,
+  },
+  {
     path: 'cart',
     component: CartComponent,
   },
   {
-    path: 'account',
-    component: AccountComponent,
+    path: 'address',
+    component: AddressComponent,
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
   },
   // Catch-all route for public pages
   {
