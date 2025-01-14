@@ -32,7 +32,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       category: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
       inventoryStatus: ['INSTOCK', Validators.required],
-      image: ['']
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+      image: ['', Validators.required]
     });
   }
 
@@ -81,6 +82,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         category: this.currentProduct.category,
         price: this.currentProduct.price,
         inventoryStatus: this.currentProduct.inventoryStatus,
+        description: this.currentProduct.description,
         image: this.currentProduct.image || ''
       });
     } else {
@@ -89,6 +91,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         category: '',
         price: 0,
         inventoryStatus: 'INSTOCK',
+        description:'',
         image: ''
       };
       this.productForm.reset({
@@ -96,6 +99,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         category: '',
         price: 0,
         inventoryStatus: 'INSTOCK',
+        description:'',
         image: ''
       });
     }
@@ -183,6 +187,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       category: '',
       price: 0,
       inventoryStatus: 'INSTOCK',
+      description: '',
       image: ''
     });
   

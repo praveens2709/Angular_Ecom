@@ -44,6 +44,7 @@ import { CommonBannerComponent } from './Public/Modules/common-banner/common-ban
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PaginatorModule } from 'primeng/paginator';
+import { ProductDetailsComponent } from './Public/Modules/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PaginatorModule } from 'primeng/paginator';
     HeaderComponent,
     AccountComponent,
     ProductComponent,
-    CommonBannerComponent
+    CommonBannerComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

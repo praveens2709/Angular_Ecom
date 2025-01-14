@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './Modules/account/account.component';
 import { ProductComponent } from './Modules/product/product.component';
+import { ProductDetailsComponent } from './Modules/product-details/product-details.component';
 
 const routes: Routes = [
   // Public login and register routes
@@ -28,6 +29,10 @@ const routes: Routes = [
     component: ProductComponent,
   },
   {
+    path: 'product-detail/:id',
+    component: ProductDetailsComponent,
+  },
+  {
     path: 'cart',
     component: CartComponent,
   },
@@ -43,7 +48,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)], // Use forChild since it's a public feature module
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class PublicRoutingModule {}

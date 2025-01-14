@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoriesService: CategoriesService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -78,10 +78,14 @@ export class ProductComponent implements OnInit {
               product.price >= filter.min && product.price <= filter.max
           );
 
+        const normalizeText = (text: string) =>
+          text.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+        const normalizedSearchQuery = normalizeText(this.searchQuery);
         const matchesSearch =
-          this.searchQuery === '' ||
-          product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          product.category.toLowerCase().includes(this.searchQuery.toLowerCase());
+          normalizedSearchQuery === '' ||
+          normalizeText(product.name).includes(normalizedSearchQuery) ||
+          normalizeText(product.category).includes(normalizedSearchQuery);
 
         return matchesCategory && matchesPrice && matchesSearch;
       })
@@ -93,6 +97,7 @@ export class ProductComponent implements OnInit {
     this.currentPage = 0;
     this.updatePaginatedProducts();
   }
+
 
   getDisplayedRange(): string {
     if (this.totalProducts === 0) {

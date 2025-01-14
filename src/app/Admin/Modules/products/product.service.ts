@@ -23,6 +23,10 @@ export class ProductService {
     );
   }
 
+  getProductById(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${productId}`);
+  }
+
   addProduct(product: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, product);
   }

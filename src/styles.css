@@ -99,8 +99,6 @@ body{
   pointer-events: none;
 }
 
-/* website */
-
 .dopeshope {
   /* font-family: 'La Belle Aurore', cursive; */
   font-weight: 700;
@@ -183,7 +181,7 @@ body{
 
 .shop-left .p-accordion .p-accordion-header .p-accordion-header-link {
   color: #495057 !important;
-  text-decoration: none !important; /* Prevent underline */
+  text-decoration: none !important;
 }
 
 .shop-left .p-dropdown {
@@ -204,8 +202,8 @@ body{
 }
 
 .product-topbar .p-dropdown-item {
-  font-size: 17px;
   /* font-family: "Josefin Sans", serif; */
+  font-size: 17px;
   padding: 7px 10px;
   color: #992603;
 }
@@ -215,8 +213,8 @@ body{
   color: #ffffff;
 }
 
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
-  background: rgba(200, 24, 8, 0.98);
+.product-topbar .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+  background: #c81808fa;
   color: #fff;
 }
 

@@ -13,6 +13,12 @@
       "name": "Men's Clothing",
       "status": "ACTIVE",
       "productCount": 3
+    },
+    {
+      "id": "71ee",
+      "name": "Women's Clothing",
+      "status": "ACTIVE",
+      "productCount": 0
     }
   ],
   "products": [
@@ -22,6 +28,7 @@
       "price": 799,
       "inventoryStatus": "INSTOCK",
       "image": "assets/images/product.png",
+      "description": "A premium quality cotton t-shirt for men.",
       "id": "1"
     },
     {
@@ -30,15 +37,35 @@
       "price": 499,
       "inventoryStatus": "INSTOCK",
       "image": "assets/images/product2.png",
+      "description": "A premium quality cotton t-shirt for men.",
       "id": "2"
     },
     {
       "name": "Men's Cotton T-shirt",
       "category": "Men's Clothing",
       "price": 999,
-      "inventoryStatus": "INSTOCK",
+      "inventoryStatus": "LOWSTOCK",
+      "description": "A premium quality cotton t-shirt for men.",
       "image": "assets/images/product3.png",
       "id": "3"
+    },
+    {
+      "id": "4",
+      "name": "Women's Cotton T-shirt",
+      "category": "Women's Clothing",
+      "price": 599,
+      "inventoryStatus": "INSTOCK",
+      "image": "assets/images/product4.png",
+      "description": "A premium quality cotton t-shirt for women."
+    },
+    {
+      "name": "Women's Cotton T-shirt",
+      "category": "Women's Clothing",
+      "price": 899,
+      "inventoryStatus": "OUTOFSTOCK",
+      "description": "A premium quality cotton t-shirt for women.",
+      "image": "assets/images/product5.png",
+      "id": "5"
     }
   ],
   "users": [
