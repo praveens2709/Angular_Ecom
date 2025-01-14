@@ -17,7 +17,7 @@
 .cart-left .payment-section h6 {
     /* font-family: "Josefin sans", serif; */
     font-size: 20px;
-    color: #07555e;
+    color: #992603;
 }
 
 .profile-box {
@@ -26,8 +26,14 @@
 
 .add-address {
     font-size: 13px;
-    color: #07555e;
-    border: 1px solid #07555e;
+    color: #992603;
+    border: 1px solid #992603;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.add-address:hover{
+    background: #992603;
+    color: #fff;
 }
 
 .address-section span {
@@ -54,6 +60,6 @@
 }
 
 .address-type{
-    color: #992603;
-    border: 1px solid #992603;
+    color: #dc3545;
+    border: 1px solid #dc3545;
 }
