@@ -265,7 +265,7 @@ body{
 
 /* Cart Body */
 .cart-body {
-  padding: 3rem 6rem;
+  padding: 3rem 10rem !important;
 }
 
 .cart-right h6 {
