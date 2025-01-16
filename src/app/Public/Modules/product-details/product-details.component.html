@@ -1,5 +1,5 @@
 <div class="page-container d-flex flex-column h-100">
-  <app-header [cartCount]="cartCount"></app-header>
+  <app-header></app-header>
   <div class="container-fluid p-0 d-flex animate three fadeInUp flex-grow-1">
     <!-- Main Image Container -->
     <div class="product-image-container w-100">
@@ -11,8 +11,9 @@
     <div class="product-details w-100">
       <h3 class="dopeshope fs-6 mb-2">DopeShope</h3>
       <h6 class="fw-normal fs-3 pb-1 border-bottom">{{ product?.name }}</h6>
+      <p class="discount-percentage bg-danger text-white px-1 mb-0">-{{ product?.discount }}%</p>
       <div class="d-flex flex-column">
-        <h5 class="price fw-semibold mt-1 mb-0">₹ {{ product?.price }}</h5>
+        <h5 class="d-flex gap-3 price fw-semibold mt-1 mb-0">{{ product?.price | currency : "INR" }}<p class="fw-lighter mb-0 mrp text-decoration-line-through">{{ product?.mrp | currency : "INR" }}</p></h5>
         <h6 class="price-info fw-semibold mb-2">Inclusive of all taxes</h6>
       </div>
       <!-- Stock Status -->
@@ -35,8 +36,8 @@
         </p>
         <h6 class="description fw-semibold mb-3 pb-2 border-bottom">{{ product?.description }}</h6>
       </div>
-      <div class="add-to-cart d-flex align-items-center justify-content-around gap-2">
-        <button class="icon-btn border-0" (click)="addToCart(product)">
+      <div (click)="addToCart(product)" class="add-to-cart d-flex align-items-center justify-content-around gap-2">
+        <button class="icon-btn border-0">
           <i class="pi pi-shopping-bag"></i>
         </button>
         <span class="cart-text fw-medium">Add to Cart</span>

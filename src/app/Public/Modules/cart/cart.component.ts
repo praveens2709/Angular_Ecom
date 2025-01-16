@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CartService } from './cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -7,54 +9,59 @@ import { Component } from '@angular/core';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent {
+export class CartComponent implements OnInit, OnDestroy {
   isChecked: boolean = false;
+  cartItems: any[] = [];
+  cartCount: number = 0;
+  private cartItemsSub: Subscription | null = null; 
+  private cartCountSub: Subscription | null = null; 
 
-  cartItems = [
-    {
-      image: 'assets/images/product.png',
-      brand: 'DopeShope',
-      title: "Men's Cotton T-shirt",
-      seller: 'dopeshope pvt. ltd.',
-      size: 'M',
-      quantity: 1,
-      price: 499,
-      isSelected: false
-    },
-    {
-      image: 'assets/images/product3.png',
-      brand: 'DopeShope',
-      title: "Men's Cotton T-shirt",
-      seller: 'dopeshope pvt. ltd.',
-      size: 'L',
-      quantity: 1,
-      price: 499,
-      isSelected: false
-    }
-  ];
+  constructor(private cartService: CartService) {}
 
-  // Update the number of selected items
+  ngOnInit(): void {
+    this.cartService.fetchCartItems();
+
+    this.cartItemsSub = this.cartService.getCartItems().subscribe((data) => {
+      this.cartItems = data;
+      this.updateCartCount();
+    });
+
+    this.cartCountSub = this.cartService.getCartCount().subscribe((count) => {
+      this.cartCount = count;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartItemsSub) this.cartItemsSub.unsubscribe();
+    if (this.cartCountSub) this.cartCountSub.unsubscribe();
+  }
+
   get selectedItemCount(): number {
     return this.cartItems.filter(item => item.isSelected).length;
   }
 
-  // Update the main checkbox when individual items are selected/deselected
+  updateCartCount(): void {
+    this.cartCount = this.cartItems.length;
+  }
+
+  addToCart(product: any): void {
+    this.cartService.addToCart(product);
+  }
+
+  toggleSelection(index: number): void {
+    this.cartService.toggleSelection(this.cartItems[index].id);
+  }
+
+  toggleSelectAll(): void {
+    this.isChecked = !this.isChecked;
+    this.cartService.toggleSelectAll(this.isChecked);
+  }
+
+  removeFromCart(productId: number): void {
+    this.cartService.removeFromCart(productId);
+  }
+
   onItemSelectionChange(): void {
     this.isChecked = this.selectedItemCount === this.cartItems.length;
   }
-
-  // Toggle selection for an individual item
-  toggleSelection(index: number) {
-    this.cartItems[index].isSelected = !this.cartItems[index].isSelected;
-    this.onItemSelectionChange(); // Update the main checkbox based on individual selection
-  }
-
-  // Toggle selection for all items
-  toggleSelectAll(): void {
-    // Update all items' isSelected property based on isChecked value
-    this.cartItems.forEach(item => item.isSelected = this.isChecked);
-  
-    // Ensure the state of isChecked is correct
-    this.isChecked = this.cartItems.every(item => item.isSelected);
-  }  
 }

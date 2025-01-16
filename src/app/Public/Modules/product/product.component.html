@@ -1,4 +1,4 @@
-<app-header [cartCount]="cartCount"></app-header>
+<app-header></app-header>
 <app-common-banner></app-common-banner>
 
 <div class="container mt-5 mb-2 animate five fadeInUp">
@@ -73,12 +73,15 @@
             <div class="product-content d-flex justify-content-between align-items-center mt-2">
               <div class="flex-column w-100">
                 <h6 class="product-name">{{ product.name }}</h6>
-                <h5 class="price mb-0">
-                  {{ product.price | currency : "INR" }}
-                </h5>
+                <h5 class="d-flex gap-2 price mb-0">
+                  {{ product.price | currency: 'INR' }}
+                  <p class="mb-0 mrp text-decoration-line-through">
+                    {{ product.mrp | currency: 'INR' }}
+                  </p>
+                </h5>                
               </div>
               <div class="shopping-bag-icon position-absolute" style="bottom: 45px; right: 5px">
-                <p-button icon="pi pi-shopping-bag"></p-button>
+                <p-button icon="pi pi-shopping-bag" (click)="addToCart($event, product)"></p-button>
               </div>
             </div>
           </a>

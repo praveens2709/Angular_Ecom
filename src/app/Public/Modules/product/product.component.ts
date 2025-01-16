@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../Admin/Modules/products/product.service';
 import { CategoriesService } from '../../../Admin/Modules/categories/categories.service';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -10,7 +11,8 @@ import { CategoriesService } from '../../../Admin/Modules/categories/categories.
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
-  cartCount: number = 5;
+  cartCount: number = 0;
+  cartItems: any[] = [];
   products: any[] = [];
   categories: any[] = [];
   filteredProducts: any[] = [];
@@ -40,13 +42,21 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
     this.fetchProducts();
     this.fetchCategories();
+    this.initializeCart();
     this.applyFilters();
+  }
+
+  initializeCart(): void {
+    this.cartService.getCartCount().subscribe((count) => {
+      this.cartCount = count;
+    });
   }
 
   fetchProducts(): void {
@@ -103,7 +113,6 @@ export class ProductComponent implements OnInit {
     if (this.totalProducts === 0) {
       return 'Showing 0 of 0 results';
     }
-
     const start = this.currentPage * this.rowsPerPage + 1;
     const end = Math.min((this.currentPage + 1) * this.rowsPerPage, this.totalProducts);
     return `Showing ${start}-${end} of ${this.totalProducts} results`;
@@ -164,5 +173,11 @@ export class ProductComponent implements OnInit {
 
   onSearchClick(): void {
     this.applyFilters();
+  }
+
+  addToCart(event: MouseEvent, product: any): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.cartService.addToCart(product);
   }
 }

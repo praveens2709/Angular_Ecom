@@ -34,12 +34,12 @@
             <!-- Product Info -->
             <div class="col-lg-8 cl-2-content d-flex flex-column">
               <p class="fw-bold">{{ item.brand }}</p>
-              <p class="fw-medium fs-7">{{ item.title }}</p>
+              <p class="fw-medium fs-7">{{ item.name }}</p>
               <p class="light-color d-flex gap-1">
                 Sold by:
                 <span class="light-color text-uppercase">{{ item.seller }}</span>
               </p>
-              <p class="fw-bold pt-1">₹ {{ item.price }}</p>
+              <p class="d-flex gap-1 fw-bold pt-1">{{ item.price | currency: 'INR' }} <span class="fw-normal text-decoration-line-through">{{ item.mrp | currency: 'INR' }}</span></p>
               <div class="d-flex align-items-center gap-1">
                 <img src="assets/images/return.png" alt="return" />
                 <p class="fw-normal d-flex gap-1 fw-medium">

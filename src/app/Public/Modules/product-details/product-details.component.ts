@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../Admin/Modules/products/product.service';
+import { CartService } from '../cart/cart.service';
 import { ViewportScroller } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
@@ -10,19 +12,30 @@ import { ViewportScroller } from '@angular/common';
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
-export class ProductDetailsComponent implements OnInit {
-  cartCount: number = 5;
+export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: any;
+  cartCount: number = 0;
+  private cartCountSub: Subscription | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService,
     private viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.fetchProductDetails();
+    this.cartCountSub = this.cartService.getCartCount().subscribe((count) => {
+      this.cartCount = count;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartCountSub) {
+      this.cartCountSub.unsubscribe();
+    }
   }
 
   fetchProductDetails(): void {
@@ -35,8 +48,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: any): void {
-    console.log('Adding to cart:', product);
-    // Logic to add the product to the cart
+    if (!product) return;
+    this.cartService.addToCart(product);
+    console.log('Product added to cart:', product);
   }
 
   getReadableStatus(status: string): string {
@@ -51,5 +65,4 @@ export class ProductDetailsComponent implements OnInit {
         return 'Unknown Status';
     }
   }
-  
 }

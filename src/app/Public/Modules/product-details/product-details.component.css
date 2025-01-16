@@ -12,7 +12,7 @@
 .product-bg {
     width: 410px;
     height: 100%;
-    background: linear-gradient(90deg, rgba(198,53,67,1) 0%, rgba(154,38,2,1) 100%);
+    border-right: 4px solid rgba(154,38,2,1);
 }
 
 .product-bg img {
@@ -25,10 +25,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.product-details h6 {
-    color: #5d5d5d;
+    h6 {
+        color: #5d5d5d;
+    }
+    .discount-percentage{
+        font-size: 14px;
+        width: 45px;
+    }
 }
 
 .price {

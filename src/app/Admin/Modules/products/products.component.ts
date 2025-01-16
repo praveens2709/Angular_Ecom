@@ -32,8 +32,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       category: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
       inventoryStatus: ['INSTOCK', Validators.required],
-      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
-      image: ['', Validators.required]
+      description: ['', [Validators.minLength(10), Validators.maxLength(200)]],
+      image: ['', Validators.required],
+      brand: ['', Validators.required],
+      seller: ['', Validators.required]
     });
   }
 
@@ -45,14 +47,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
   loadProducts(): void {
     this.productService
       .getProducts()
-      .pipe(tap((data) => (this.products = data)), takeUntil(this.destroy$))
+      .pipe(
+        tap((products) => {
+          this.products = products.map((product) => ({
+            ...product,
+            finalPrice: product.price - (product.price * product.discount) / 100 // Final price after discount
+          }));
+        }),
+        takeUntil(this.destroy$)
+      )
       .subscribe();
   }
 
   loadCategories(): void {
-    this.categoriesService.getCategories().subscribe((data) => {
-      this.categories = data.filter(category => category.status === 'ACTIVE');
-    });
+    this.categoriesService
+      .getCategories()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data) => {
+        this.categories = data.filter((category) => category.status === 'ACTIVE');
+      });
   }
 
   getSeverity(status: string): 'success' | 'info' | 'warning' | 'danger' {
@@ -77,46 +90,37 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     if (mode === 'edit' && product) {
       this.currentProduct = { ...product };
-      this.productForm.setValue({
-        name: this.currentProduct.name,
-        category: this.currentProduct.category,
-        price: this.currentProduct.price,
-        inventoryStatus: this.currentProduct.inventoryStatus,
-        description: this.currentProduct.description,
-        image: this.currentProduct.image || ''
+      this.productForm.patchValue({
+        ...this.currentProduct
       });
     } else {
-      this.currentProduct = {
-        name: '',
-        category: '',
-        price: 0,
-        inventoryStatus: 'INSTOCK',
-        description:'',
-        image: ''
-      };
+      this.currentProduct = {};
       this.productForm.reset({
         name: '',
         category: '',
         price: 0,
         inventoryStatus: 'INSTOCK',
-        description:'',
-        image: ''
+        description: '',
+        image: '',
+        brand: 'DopeShope',
+        seller: 'dopeshope pvt. ltd.'
       });
     }
 
     this.dialogVisible = true;
   }
 
-  onImageUpload(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const file = input?.files?.[0];
-
-    if (file) {
-      const fileName = file.name;
-      this.productForm.patchValue({
-        image: `assets/images/${fileName}`
-      });
+  calculateDiscountAndMRP(price: number): { discount: number; mrp: number } {
+    let discount = 0;
+    if (price < 500) {
+      discount = 10; // 10% discount for prices below 500
+    } else if (price >= 500 && price < 1000) {
+      discount = 20; // 20% discount for prices between 500 and 999
+    } else {
+      discount = 40; // 40% discount for prices 1000 and above
     }
+    const mrp = Math.round(price / (1 - discount / 100));
+    return { discount, mrp };
   }
 
   saveProduct(): void {
@@ -125,6 +129,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     const productData = { ...this.productForm.value, id: this.currentProduct.id };
+    const { discount, mrp } = this.calculateDiscountAndMRP(productData.price);
+
+    productData.discount = discount;
+    productData.mrp = mrp;
 
     if (this.dialogMode === 'edit') {
       this.productService
@@ -133,15 +141,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
           tap(() => this.loadProducts()),
           takeUntil(this.destroy$)
         )
-        .subscribe(
-          () => {
-            this.dialogVisible = false;
-            console.log('Product updated successfully');
-          },
-          (error) => {
-            console.error('Error updating product:', error);
-          }
-        );
+        .subscribe(() => {
+          this.dialogVisible = false;
+          console.log('Product updated successfully');
+        });
     } else {
       this.productService
         .getNextId()
@@ -176,21 +179,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
       });
   }
 
+  onImageUpload(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input?.files?.[0];
+    if (file) {
+      const fileName = file.name;
+      this.productForm.patchValue({ image: `assets/images/${fileName}` });
+    }
+  }
+
+  cancel(): void {
+    this.productForm.reset();
+    this.dialogVisible = false;
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  cancel(): void {
-    this.productForm.reset({
-      name: '',
-      category: '',
-      price: 0,
-      inventoryStatus: 'INSTOCK',
-      description: '',
-      image: ''
-    });
-  
-    this.dialogVisible = false;
-  }  
 }
