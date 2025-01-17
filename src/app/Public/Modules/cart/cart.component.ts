@@ -60,12 +60,16 @@ export class CartComponent implements OnInit, OnDestroy {
     let totalMRP = 0;
     let totalDiscount = 0;
     let totalAmount = 0;
+    let totalItemsCount = 0;
   
     // Loop through all cart items
     this.cartItems.forEach(item => {
-      totalMRP += item.mrp; // Add the MRP of each item
-      totalAmount += item.price; // Add the final price of each item
-      totalDiscount += (item.mrp - item.price); // Calculate the discount for each item
+      if (item.isSelected) { // Only include selected items
+        totalMRP += item.mrp; // Add the MRP of each item
+        totalAmount += item.price; // Add the final price of each item
+        totalDiscount += (item.mrp - item.price); // Calculate the discount for each item
+        totalItemsCount += item.quantity; // Update item count for selected items
+      }
     });
   
     // Update the price details object
@@ -75,10 +79,11 @@ export class CartComponent implements OnInit, OnDestroy {
       platformFee: 'Free',
       shippingFee: 'Free',
       totalAmount,
+      itemsCount: totalItemsCount
     };
   
     console.log('Price details updated:', this.priceDetails);
-  }  
+  }   
 
   // Toggle individual product selection
   toggleSelection(index: number): void {
