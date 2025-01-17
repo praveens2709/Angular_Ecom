@@ -9,12 +9,18 @@
             <div class="d-flex align-items-center gap-2">
               <!-- Main Checkbox for Select All -->
               <p-checkbox binary="true" [(ngModel)]="isChecked" (onChange)="toggleSelectAll()"></p-checkbox>
-              <h6>{{ selectedItemCount }}/{{ cartItems.length }} ITEMS SELECTED</h6>
+              <h6>
+                {{ selectedItemCount }}/{{ cartItems.length }} ITEMS SELECTED
+              </h6>
             </div>
             <div class="d-flex align-items-center gap-3">
-              <button class="h5 border-0 bg-transparent" (click)="removeAllFromCart()">REMOVE ALL</button>
+              <button class="h5 border-0 bg-transparent" (click)="removeAllFromCart()">
+                REMOVE ALL
+              </button>
               <span></span>
-              <button class="h5 border-0 bg-transparent">MOVE TO WISHLIST</button>
+              <button class="h5 border-0 bg-transparent">
+                MOVE TO WISHLIST
+              </button>
             </div>
           </div>
           <div *ngFor="let item of cartItems; let i = index"
@@ -34,9 +40,19 @@
               <p class="fw-medium fs-7">{{ item.name }}</p>
               <p class="light-color d-flex gap-1">
                 Sold by:
-                <span class="light-color text-uppercase">{{ item.seller }}</span>
+                <span class="light-color text-uppercase">{{
+                  item.seller
+                  }}</span>
               </p>
-              <p class="d-flex gap-1 fw-bold pt-1">{{ item.price | currency: 'INR' }} <span class="fw-normal text-decoration-line-through">{{ item.mrp | currency: 'INR' }}</span></p>
+              <button pButton type="button" label="Qty: {{ quantity }}" icon="pi pi-angle-down"
+                (click)="openQuantityModal()" class="p-button-text mb-1"></button>
+              <div class="d-flex gap-1 pt-1">
+                <p class="fw-bold">{{ item.price | currency : "INR" }}</p>
+                <span class="fw-normal text-decoration-line-through">{{
+                  item.mrp | currency : "INR"
+                  }}</span>
+                <span class="fw-medium red">{{ item.discount }}% OFF</span>
+              </div>
               <div class="d-flex align-items-center gap-1">
                 <img src="assets/images/return.png" alt="return" />
                 <p class="fw-normal d-flex gap-1 fw-medium">
@@ -56,4 +72,22 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal content -->
+<div class="modal-content">
+<p-dialog [(visible)]="isModalVisible" header="Select Quantity" [modal]="true" [closable]="true"
+  (onHide)="closeQuantityModal()" [style]="{ width: '400px' }">
+
+  <div class="modal-body">
+    <div class="sizes d-flex gap-2 flex-wrap mb-2">
+      <button *ngFor="let qty of availableQuantities" type="button" class="size-btn fw-bold rounded-circle"
+        [ngClass]="{ 'selected': qty === quantity }" (click)="selectQuantity(qty)">
+        {{ qty }}
+      </button>
+    </div>
+    <button pButton type="button" label="Done" (click)="closeQuantityModal()" class="w-100 p-button-raised">
+    </button>
+  </div>
+</p-dialog>
 </div>

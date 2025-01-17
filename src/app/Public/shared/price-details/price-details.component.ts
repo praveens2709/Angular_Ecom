@@ -9,4 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class PriceDetailsComponent {
   @Input() priceDetails: any;
+  ngOnChanges(): void {
+    console.log('Price details updated:', this.priceDetails);
+  }
 }

@@ -159,5 +159,20 @@
       "status": "Delivered"
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "1",
+      "name": "Men's Cotton T-shirt",
+      "category": "Men's Clothing",
+      "price": 499,
+      "inventoryStatus": "INSTOCK",
+      "description": "A comfortable and breathable cotton t-shirt for men, offering a perfect balance of style and ease for everyday wear.",
+      "image": "assets/images/product.png",
+      "brand": "DopeShope",
+      "seller": "dopeshope pvt. ltd.",
+      "discount": 10,
+      "mrp": 554,
+      "isSelected": true
+    }
+  ]
 }

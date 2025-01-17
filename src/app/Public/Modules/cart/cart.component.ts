@@ -9,7 +9,12 @@ import { Subscription } from 'rxjs';
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit, OnDestroy {
-  isChecked: boolean = false; // Default "select all" checkbox state
+  isChecked: boolean = false;
+  isModalVisible: boolean = false;
+  availableQuantities: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
+  quantity: number = 1; // Default quantity
+  pricePerUnit: number = 50; // Example price per unit
+  totalPrice: number = 0;
   cartItems: any[] = [];
   cartCount: number = 0;
   priceDetails: any = {
@@ -31,12 +36,13 @@ export class CartComponent implements OnInit, OnDestroy {
       this.cartItems = data;
       this.isChecked = this.cartItems.every(item => item.isSelected); // Update main checkbox
       this.updatePriceDetails();
+      this.updateTotalPrice();
     });
   
     this.cartCountSub = this.cartService.getCartCount().subscribe((count) => {
       this.cartCount = count;
     });
-  }   
+  }
 
   ngOnDestroy(): void {
     if (this.cartItemsSub) this.cartItemsSub.unsubscribe();
@@ -91,5 +97,22 @@ export class CartComponent implements OnInit, OnDestroy {
   // Remove all products from the cart
   removeAllFromCart(): void {
     this.cartService.removeAllFromCart();
+  }
+
+   openQuantityModal(): void {
+    this.isModalVisible = true;
+  }
+
+  closeQuantityModal(): void {
+    this.isModalVisible = false;
+  }
+
+  selectQuantity(qty: number): void {
+    this.quantity = qty;
+    this.updateTotalPrice();
+  }
+
+  updateTotalPrice(): void {
+    this.totalPrice = this.quantity * this.pricePerUnit;
   }
 }
