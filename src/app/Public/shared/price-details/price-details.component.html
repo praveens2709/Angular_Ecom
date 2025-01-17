@@ -1,34 +1,33 @@
 <div class="cart-right">
-    <div class="d-flex align-items-center gap-2">
-      <h6 class="mb-3 fw-bold">PRICE DETAILS</h6>
-      <h6 class="pt-0 fw-semibold">({{ priceDetails.itemsCount }} Items)</h6>
-    </div>
-    
-    <!-- Display dynamic price details -->
-    <div class="d-flex align-items-center justify-content-between mt-3">
-      <span class="fw-medium">Total MRP</span>
-      <span class="span">{{ priceDetails.totalMRP | currency: 'INR' }}</span>
-    </div>
-    <div class="d-flex align-items-center justify-content-between mt-2">
-      <span class="fw-medium">Discount on MRP</span>
-      <span class="span red">- {{ priceDetails.discount | currency: 'INR' }}</span>
-    </div>
-    <div class="d-flex align-items-center justify-content-between mt-2">
-      <span class="fw-medium">Platform Fee</span>
-      <span class="span red">{{ priceDetails.platformFee }}</span>
-    </div>
-    <div class="d-flex align-items-center justify-content-between mt-2 pb-3 border-bottom">
-      <span class="fw-medium">Shipping Fee</span>
-      <span class="span red">{{ priceDetails.shippingFee }}</span>
-    </div>
-    <div class="d-flex align-items-center justify-content-between mt-2">
-      <span class="total-amount fw-semibold">Total Amount</span>
-      <span class="fw-bold span2">{{ priceDetails.totalAmount | currency: 'INR' }}</span>
-    </div>
-    <!-- <ng-container *ngIf="showButton">
-      <a *ngIf="buttonText" [routerLink]="buttonLink">
-        <button type="button" class="w-100">{{ buttonText }}</button>
-      </a>
-    </ng-container> -->
+  <div class="d-flex align-items-center gap-2">
+    <h6 class="mb-3 fw-bold">PRICE DETAILS</h6>
+    <h6 class="pt-0 fw-semibold">({{ priceDetails.itemsCount }} Items)</h6>
   </div>
-  
+
+  <!-- Display dynamic price details -->
+  <div class="d-flex align-items-center justify-content-between mt-3">
+    <span class="fw-medium">Total MRP</span>
+    <span class="span">{{ priceDetails.totalMRP | currency : "INR" }}</span>
+  </div>
+  <div class="d-flex align-items-center justify-content-between mt-2">
+    <span class="fw-medium">Discount on MRP</span>
+    <span class="span red">- {{ priceDetails.discount | currency : "INR" }}</span>
+  </div>
+  <div class="d-flex align-items-center justify-content-between mt-2">
+    <span class="fw-medium">Platform Fee</span>
+    <span class="span red">{{ priceDetails.platformFee }}</span>
+  </div>
+  <div class="d-flex align-items-center justify-content-between mt-2 pb-3 border-bottom">
+    <span class="fw-medium">Shipping Fee</span>
+    <span class="span red">{{ priceDetails.shippingFee }}</span>
+  </div>
+  <div class="d-flex align-items-center justify-content-between mt-2">
+    <span class="total-amount fw-semibold">Total Amount</span>
+    <span class="fw-bold span2">{{
+      priceDetails.totalAmount | currency : "INR"
+      }}</span>
+  </div>
+  <button type="button" class="w-100" [routerLink]="isButtonDisabled ? null : buttonLink" [disabled]="isButtonDisabled">
+    {{ buttonText }}
+  </button>
+</div>

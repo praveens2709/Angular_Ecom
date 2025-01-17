@@ -68,7 +68,8 @@
       </div>
       <!-- Right Column -->
       <div class="col-lg-4">
-        <app-price-details [priceDetails]="priceDetails"></app-price-details>
+        <app-price-details [priceDetails]="priceDetails" [buttonText]="'Place Order'" [buttonLink]="'/address'"
+          [isButtonDisabled]="priceDetails.itemsCount === 0"></app-price-details>
       </div>
     </div>
   </div>

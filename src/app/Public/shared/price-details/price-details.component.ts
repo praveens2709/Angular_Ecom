@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-price-details',
@@ -9,7 +9,14 @@ import { Component, Input } from '@angular/core';
 })
 export class PriceDetailsComponent {
   @Input() priceDetails: any;
-  ngOnChanges(): void {
-    console.log('Price details updated:', this.priceDetails);
+  @Input() buttonText: string = '';
+  @Input() buttonLink: string = '';
+  @Input() isButtonDisabled: boolean = false; // Control button state
+  @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>(); // Emit custom events for action
+
+  onButtonClick(): void {
+    if (!this.isButtonDisabled) {
+      this.buttonClick.emit();
+    }
   }
 }

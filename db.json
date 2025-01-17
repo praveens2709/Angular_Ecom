@@ -159,5 +159,40 @@
       "status": "Delivered"
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "1",
+      "name": "Men's Cotton T-shirt",
+      "category": "Men's Clothing",
+      "price": 998,
+      "inventoryStatus": "INSTOCK",
+      "description": "A comfortable and breathable cotton t-shirt for men, offering a perfect balance of style and ease for everyday wear.",
+      "image": "assets/images/product.png",
+      "brand": "DopeShope",
+      "seller": "dopeshope pvt. ltd.",
+      "discount": 10,
+      "mrp": 1108,
+      "quantity": 2,
+      "basePrice": 499,
+      "baseMRP": 554,
+      "isSelected": true
+    },
+    {
+      "id": "2",
+      "name": "Women's Cotton T-shirt",
+      "category": "Women's Clothing",
+      "price": 1198,
+      "inventoryStatus": "INSTOCK",
+      "description": "A comfortable and breathable cotton t-shirt for women, offering a perfect balance of style and ease for everyday wear.",
+      "image": "assets/images/product4.png",
+      "brand": "DopeShope",
+      "seller": "dopeshope pvt. ltd.",
+      "discount": 20,
+      "mrp": 1498,
+      "quantity": 2,
+      "basePrice": 599,
+      "baseMRP": 749,
+      "isSelected": true
+    }
+  ]
 }

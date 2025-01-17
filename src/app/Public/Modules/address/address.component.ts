@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CartService } from '../cart/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-address',
@@ -8,17 +10,24 @@ import { Component } from '@angular/core';
   styleUrl: './address.component.css'
 })
 export class AddressComponent {
-  // Address selected state
-  selectedAddress: boolean = true;
+  selectedAddress: string | null = null;
+  priceDetails: any = {};
+  private priceDetailsSub: Subscription | null = null;
 
-  // Add any other necessary properties for cart data
-  cartItems = [
-    {
-      image: 'assets/images/product.png',
-      title: "Men's Cotton T-shirt",
-      price: 499,
-      isSelected: false
-    },
-    // More cart items can be added here
-  ];
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    // Subscribe to price details from CartService
+    this.priceDetailsSub = this.cartService.getPriceDetails().subscribe((details) => {
+      this.priceDetails = details;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.priceDetailsSub) this.priceDetailsSub.unsubscribe();
+  }
+
+  isButtonEnabled(): boolean {
+    return this.priceDetails.itemsCount > 0 && this.selectedAddress !== null;
+  }
 }
