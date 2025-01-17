@@ -50,6 +50,7 @@ import { AddressComponent } from './Public/Modules/address/address.component';
 import { PaymentComponent } from './Public/Modules/payment/payment.component';
 import { PanelModule } from 'primeng/panel';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { PriceDetailsComponent } from './public/shared/price-details/price-details.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     ProductDetailsComponent,
     CartHeaderComponent,
     AddressComponent,
-    PaymentComponent
+    PaymentComponent,
+    PriceDetailsComponent
   ],
   imports: [
     BrowserModule,
