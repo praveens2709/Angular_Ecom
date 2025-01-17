@@ -44,8 +44,8 @@
                   item.seller
                   }}</span>
               </p>
-              <button pButton type="button" label="Qty: {{ quantity }}" icon="pi pi-angle-down"
-                (click)="openQuantityModal()" class="p-button-text mb-1"></button>
+              <button pButton type="button" label="Qty: {{ item.quantity || 1 }}" icon="pi pi-angle-down"
+                (click)="openQuantityModal(item)" class="p-button-text mb-1"></button>
               <div class="d-flex gap-1 pt-1">
                 <p class="fw-bold">{{ item.price | currency : "INR" }}</p>
                 <span class="fw-normal text-decoration-line-through">{{
@@ -76,18 +76,16 @@
 
 <!-- Modal content -->
 <div class="modal-content">
-<p-dialog [(visible)]="isModalVisible" header="Select Quantity" [modal]="true" [closable]="true"
-  (onHide)="closeQuantityModal()" [style]="{ width: '400px' }">
-
-  <div class="modal-body">
-    <div class="sizes d-flex gap-2 flex-wrap mb-2">
-      <button *ngFor="let qty of availableQuantities" type="button" class="size-btn fw-bold rounded-circle"
-        [ngClass]="{ 'selected': qty === quantity }" (click)="selectQuantity(qty)">
-        {{ qty }}
-      </button>
+  <p-dialog [(visible)]="isModalVisible" header="Select Quantity" [modal]="true" [closable]="true"
+    (onHide)="closeQuantityModal()" [style]="{ width: '400px' }">
+    <div class="modal-body">
+      <div class="sizes d-flex gap-2 flex-wrap mb-2">
+        <button *ngFor="let qty of availableQuantities" type="button" class="size-btn fw-bold rounded-circle"
+          [ngClass]="{ selected: qty === selectedQuantity }" (click)="selectQuantity(qty)">
+          {{ qty }}
+        </button>
+      </div>
+      <button pButton type="button" label="Done" (click)="closeQuantityModal()" class="w-100 p-button-raised"></button>
     </div>
-    <button pButton type="button" label="Done" (click)="closeQuantityModal()" class="w-100 p-button-raised">
-    </button>
-  </div>
-</p-dialog>
+  </p-dialog>
 </div>

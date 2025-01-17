@@ -52,16 +52,51 @@ export class CartService {
   }
 
   addToCart(product: any): void {
-    const productWithSelection = { ...product, isSelected: true };
-    const updatedCartItems = [...this.cartItemsSubject.getValue(), productWithSelection];
-    this.cartItemsSubject.next(updatedCartItems);
-    this.cartCountSubject.next(updatedCartItems.length);
-
-    this.http.post(this.apiUrl, productWithSelection).subscribe({
-      next: () => console.log('Product added to cart successfully'),
-      error: (err) => console.error('Failed to add product to cart', err)
-    });
+    const existingProductIndex = this.cartItemsSubject.getValue().findIndex(item => item.id === product.id);
+  
+    if (existingProductIndex !== -1) {
+      // Update quantity and prices if product already exists
+      const existingProduct = this.cartItemsSubject.getValue()[existingProductIndex];
+      existingProduct.quantity += 1;
+      existingProduct.price = existingProduct.basePrice * existingProduct.quantity;
+      existingProduct.mrp = existingProduct.baseMRP * existingProduct.quantity;
+    } else {
+      // Add new product with default quantity
+      const productWithDefaults = {
+        ...product,
+        quantity: 1,
+        basePrice: product.price, // Save original price for calculations
+        baseMRP: product.mrp,     // Save original MRP for calculations
+        price: product.price,
+        mrp: product.mrp,
+        isSelected: true
+      };
+      const updatedCartItems = [...this.cartItemsSubject.getValue(), productWithDefaults];
+      this.cartItemsSubject.next(updatedCartItems);
+      this.cartCountSubject.next(updatedCartItems.length);
+  
+      this.http.post(this.apiUrl, productWithDefaults).subscribe({
+        next: () => console.log('Product added to cart successfully'),
+        error: (err) => console.error('Failed to add product to cart', err)
+      });
+    }
+  
+    // Trigger price details update
+    this.updateServer(this.cartItemsSubject.getValue());
   }  
+
+  updateItem(updatedItem: any): void {
+    const updatedItems = this.cartItemsSubject.getValue().map(item =>
+      item.id === updatedItem.id ? updatedItem : item
+    );
+    this.cartItemsSubject.next(updatedItems);
+  
+    // Update the item on the backend (JSON server)
+    this.http.put(`${this.apiUrl}/${updatedItem.id}`, updatedItem).subscribe({
+      next: () => console.log('Item updated successfully'),
+      error: (err) => console.error('Failed to update item', err)
+    });
+  }   
 
   // Remove a product from the cart
   removeFromCart(productId: string): void {

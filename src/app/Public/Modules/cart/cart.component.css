@@ -91,9 +91,10 @@
     margin: 5px;
     color: rgb(183, 29, 12);
     background: #fff;
+    transition: all 0.2s ease-in-out;
+}
 
-    &.selected {
-        background-color: rgb(183, 29, 12);
-        color: #fff;
-    }
+.size-btn.selected {
+    background-color: rgb(183, 29, 12);
+    color: #fff;
 }
