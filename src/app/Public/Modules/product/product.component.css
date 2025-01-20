@@ -1,6 +1,7 @@
 .shop-left input {
     border: 1px solid #992603;
     color: #992603;
+    box-shadow: none;
 }
 
 .shop-left input::placeholder {

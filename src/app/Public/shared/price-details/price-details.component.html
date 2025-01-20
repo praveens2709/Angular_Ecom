@@ -11,13 +11,17 @@
   </div>
   <div class="d-flex align-items-center justify-content-between mt-2">
     <span class="fw-medium">Discount on MRP</span>
-    <span class="span red">- {{ priceDetails.discount | currency : "INR" }}</span>
+    <span class="span red"
+      >- {{ priceDetails.discount | currency : "INR" }}</span
+    >
   </div>
   <div class="d-flex align-items-center justify-content-between mt-2">
     <span class="fw-medium">Platform Fee</span>
     <span class="span red">{{ priceDetails.platformFee }}</span>
   </div>
-  <div class="d-flex align-items-center justify-content-between mt-2 pb-3 border-bottom">
+  <div
+    class="d-flex align-items-center justify-content-between mt-2 pb-3 border-bottom"
+  >
     <span class="fw-medium">Shipping Fee</span>
     <span class="span red">{{ priceDetails.shippingFee }}</span>
   </div>
@@ -25,9 +29,24 @@
     <span class="total-amount fw-semibold">Total Amount</span>
     <span class="fw-bold span2">{{
       priceDetails.totalAmount | currency : "INR"
-      }}</span>
+    }}</span>
   </div>
-  <button type="button" class="w-100" [routerLink]="isButtonDisabled ? null : buttonLink" [disabled]="isButtonDisabled">
+  <!-- Place Order Button -->
+  <button
+    type="button"
+    class="w-100 mb-2"
+    [routerLink]="!isButtonDisabled ? buttonLink : null"
+    [ngClass]="{ 'disabled-button': isButtonDisabled }"
+    (click)="onButtonClick()"
+  >
     {{ buttonText }}
   </button>
+  <!-- Warning Message -->
+  <div
+    *ngIf="showWarning"
+    class="d-flex gap-1 align-items-center justify-content-center order-warning"
+  >
+    <i class="pi pi-info-circle"></i>
+    <span>{{ warningMessage }}</span>
+  </div>
 </div>

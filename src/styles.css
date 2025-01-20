@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
 /* admin */
 * {
   /* margin: 0;
@@ -101,7 +105,7 @@ body {
 }
 
 .dopeshope {
-  /* font-family: 'La Belle Aurore', cursive; */
+  font-family: 'La Belle Aurore', cursive;
   font-weight: 700;
   z-index: 10;
   color: #c5341e;
@@ -201,6 +205,15 @@ body {
 .shop-right .p-inputtext {
   color: #c5341e;
   padding: 0.2rem 0.5rem;
+}
+
+.product-topbar .p-dropdown:not(.p-disabled).p-focus{
+  box-shadow: none;
+  border-color: #992603;
+}
+
+.product-topbar .p-dropdown:not(.p-disabled):hover{
+  border-color: #992603;
 }
 
 .product-topbar .p-dropdown-item {
