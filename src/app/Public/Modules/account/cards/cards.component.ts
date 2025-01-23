@@ -50,7 +50,7 @@ export class CardsComponent implements OnInit {
   }
 
   openEditCardDialog(card: any): void {
-    this.dialogTitle = 'Edit Card';
+    this.dialogTitle = 'Edit Card Details';
     this.isDialogVisible = true;
     this.editingCardId = card.id;
 

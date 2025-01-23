@@ -60,7 +60,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { UserOrdersComponent } from './Public/Modules/account/user-orders/user-orders.component';
 import { EditProfileComponent } from './Public/Modules/account/edit-profile/edit-profile.component';
 import { CalendarModule } from 'primeng/calendar';
-import { CommonDialogComponent } from './Public/common/common-dialog/common-dialog.component';
 
 @NgModule({
   declarations: [
@@ -95,8 +94,7 @@ import { CommonDialogComponent } from './Public/common/common-dialog/common-dial
     CardsComponent,
     DeleteAccountComponent,
     UserOrdersComponent,
-    EditProfileComponent,
-    CommonDialogComponent
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

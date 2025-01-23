@@ -27,8 +27,8 @@
   </div>
 
   <!-- Saved Cards List -->
-  <span class="fw-medium">DEFAULT CARD</span>
   <div *ngIf="cards.length">
+    <span class="fw-medium">DEFAULT CARD</span>
     <div *ngFor="let card of cards" class="profile-box px-3 py-2 mb-3">
       <div class="d-flex justify-content-between align-items-center">
         <p class="mb-0 fw-semibold">{{ card.cardHolderName }}</p>
