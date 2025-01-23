@@ -3,8 +3,6 @@
     <h6 class="mb-3 fw-bold">PRICE DETAILS</h6>
     <h6 class="pt-0 fw-semibold">({{ priceDetails.itemsCount }} Items)</h6>
   </div>
-
-  <!-- Display dynamic price details -->
   <div class="d-flex align-items-center justify-content-between mt-3">
     <span class="fw-medium">Total MRP</span>
     <span class="span">{{ priceDetails.totalMRP | currency : "INR" }}</span>
@@ -31,8 +29,8 @@
       priceDetails.totalAmount | currency : "INR"
     }}</span>
   </div>
-  <!-- Place Order Button -->
   <button
+    *ngIf="buttonText && buttonLink"
     type="button"
     class="w-100 mb-2"
     [routerLink]="!isButtonDisabled ? buttonLink : null"
@@ -41,9 +39,8 @@
   >
     {{ buttonText }}
   </button>
-  <!-- Warning Message -->
   <div
-    *ngIf="showWarning"
+    *ngIf="warningMessage && showWarning"
     class="d-flex gap-1 align-items-center justify-content-center order-warning"
   >
     <i class="pi pi-info-circle"></i>

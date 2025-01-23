@@ -207,12 +207,12 @@ body {
   padding: 0.2rem 0.5rem;
 }
 
-.product-topbar .p-dropdown:not(.p-disabled).p-focus{
+.product-topbar .p-dropdown:not(.p-disabled).p-focus {
   box-shadow: none;
   border-color: #992603;
 }
 
-.product-topbar .p-dropdown:not(.p-disabled):hover{
+.product-topbar .p-dropdown:not(.p-disabled):hover {
   border-color: #992603;
 }
 
@@ -233,7 +233,15 @@ body {
   color: #fff;
 }
 
-.shopping-bag-icon .p-button {
+.back-button-container {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.shopping-bag-icon .p-button,
+.back-button {
   width: 42px;
   height: 42px;
   color: #fff;
@@ -244,7 +252,8 @@ body {
   font-size: 0.7rem;
 }
 
-.shopping-bag-icon .p-button:hover {
+.shopping-bag-icon .p-button:hover,
+.back-button:hover {
   color: #992603;
   background: #fff;
 }
@@ -302,8 +311,8 @@ body {
 
 .cart-right span {
   /* font-family: "Josefin sans", serif; */
-  font-size: 14px;
-  color: #5b5b5b;
+  font-size: 14px !important;
+  color: #5b5b5b !important;
 }
 
 .cart-right .span {
@@ -332,7 +341,11 @@ body {
 }
 
 .cart-right button,
-.modal-body button {
+.modal-body button,
+.profile-box2 button,
+.edit-remove-address button,
+.save-address-btn,
+.edit-remove-card button {
   /* font-family: "Josefin sans", serif; */
   font-size: 15px;
   background: rgb(183, 29, 12);
@@ -344,13 +357,18 @@ body {
   padding: 10px 0 8px;
   border: none;
   font-weight: 600;
-  span{
+
+  span {
     color: #ffffff !important;
     margin-bottom: 3px;
   }
 }
 
-.cart-right button:hover {
+.cart-right button:hover,
+.profile-box2 button:hover,
+.edit-remove-address button:hover,
+.save-address-btn:hover,
+.edit-remove-card button:hover {
   background-color: #992603;
 }
 
@@ -362,14 +380,188 @@ body {
   .p-dialog .p-dialog-header {
     border-bottom: 1px solid #dee2e6;
     padding: 0.5rem 1rem;
-}
-  .p-dialog .p-dialog-header .p-dialog-title {
-      font-size: 1rem !important;
   }
+
+  .p-dialog .p-dialog-header .p-dialog-title {
+    font-size: 1rem !important;
+  }
+
   .p-dialog .p-dialog-content {
     background: #ffffff;
     color: #495057;
     padding: 1rem;
+  }
+
 }
 
+.custom-calendar .p-inputtext {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+.calendar-input-wrapper {
+  border: 1px solid #a1a1a1;
+}
+
+.pi-calendar {
+  padding: 0 20px;
+  font-size: 22px;
+}
+
+.p-datepicker {
+  padding: 0;
+  border-radius: 0;
+}
+
+.p-calendar {
+  display: flex;
+}
+
+.p-datepicker .p-datepicker-header .p-datepicker-prev,
+.p-datepicker .p-datepicker-header .p-datepicker-next {
+  width: 2rem;
+  height: 2rem;
+  color: #6c757d;
+  border: 0 none;
+  background: transparent;
+  border-radius: 50%;
+  margin-top: 0;
+  padding: 0;
+}
+
+.p-datepicker-title .p-datepicker-month {
+  margin-right: 1rem;
+}
+
+.p-datepicker-title .p-datepicker-year {
+  margin-left: 1rem;
+}
+
+.p-datepicker-title .p-datepicker-month,
+.p-datepicker-title .p-datepicker-year {
+  margin-top: 0;
+  background: none;
+  color: #000;
+  font-size: 20px;
+  padding: 0;
+  border-radius: 0;
+}
+
+.p-datepicker-title .p-datepicker-month:hover,
+.p-datepicker-title .p-datepicker-year:hover {
+  background: none;
+  color: #000;
+}
+
+.address-section .p-dialog,
+.cards-section .p-dialog {
+  height: 500px;
+  max-height: none;
+}
+
+.address-section .p-dialog .p-dialog-header,
+.cards-section .p-dialog .p-dialog-header {
+  border-bottom: 0 none;
+  background: #ffffff;
+  color: #535766;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #d4d5d9;
+
+  .p-dialog-title {
+    font-weight: 800;
+    font-size: 14px;
+  }
+}
+
+.edit-profile p,
+label,
+.address-section .p-dialog-content label,
+.cards-section .p-dialog-content label {
+  font-size: 14px;
+  color: #535766;
+  font-weight: 500;
+}
+
+.profile-box2 input,
+.address-section .p-dialog-content .form-group input,
+.cards-section .p-dialog-content .form-group input {
+  border: 1px solid #a1a1a1;
+  box-shadow: none;
+  border-radius: 0;
+  font-size: 18px;
+}
+
+
+.add-address,
+.add-card {
+  font-size: 13px;
+  color: #992603;
+  border: 1px solid #992603;
+  cursor: pointer;
+  transition: 0.3s;
+
+  .pi-plus {
+    font-size: 13px;
+    margin-top: -1px;
+  }
+}
+
+.add-address:hover,
+.add-card:hover {
+  background: #992603;
+  color: #ffffff;
+}
+
+.address-section,
+.cards-section {
+  width: 80%;
+
+  h6 {
+    color: #992603;
+  }
+
+  .profile-box {
+    width: 100%;
+    background: #f3f3f3c2;
+  }
+
+  .dialog-content {
+    padding: 20px 0;
+  }
+
+  .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #d4d5d9;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+  }
+
+  .fixed-footer button {
+    width: 50%;
+  }
+
+  .cancel-address-btn {
+    font-size: 15px;
+    background: #6c757d;
+    color: #ffffff;
+    line-height: 16px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    padding: 10px 0 8px;
+    border: none;
+    font-weight: 600;
+  }
+
+  .cancel-address-btn:hover {
+    background: #646464;
+  }
 }

@@ -1,0 +1,27 @@
+.cards-section {
+  span {
+    font-size: 13px;
+    color: #747474;
+  }
+  .profile-box {
+    .card-type-icon {
+      width: 40px;
+      height: auto;
+    }
+  }
+}
+
+.card-details p {
+  font-size: 16px;
+  color: #696969;
+}
+
+.saved-cards img{
+  width: 200px;
+  opacity: 0.7;
+}
+
+.saved-cards p{
+  font-size: 15px;
+  color: #606060;
+}

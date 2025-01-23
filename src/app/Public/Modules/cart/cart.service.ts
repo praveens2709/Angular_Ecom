@@ -149,10 +149,11 @@ export class CartService {
       .then(() => {
         this.cartItemsSubject.next([]);
         this.cartCountSubject.next(0);
+        this.updatePriceDetails([]);
         console.log('All products removed successfully');
       })
       .catch(err => console.error('Failed to clear cart', err));
-  }
+  }  
 
   private updateServer(updatedItems: any[]): void {
     const updateRequests = updatedItems.map((item) =>

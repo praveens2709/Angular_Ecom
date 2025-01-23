@@ -22,7 +22,6 @@ import { DashboardComponent } from './Admin/Modules/dashboard/dashboard.componen
 import { CardModule } from 'primeng/card';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
 import { TagModule } from 'primeng/tag';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -50,7 +49,18 @@ import { AddressComponent } from './Public/Modules/address/address.component';
 import { PaymentComponent } from './Public/Modules/payment/payment.component';
 import { PanelModule } from 'primeng/panel';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { PriceDetailsComponent } from './Public/shared/price-details/price-details.component';
+import { PriceDetailsComponent } from './Public/common/price-details/price-details.component';
+import { BackButtonComponent } from './Public/common/back-button/back-button.component';
+import { OverviewComponent } from './Public/Modules/account/overview/overview.component';
+import { AddressesComponent } from './Public/Modules/account/addresses/addresses.component';
+import { CardsComponent } from './Public/Modules/account/cards/cards.component';
+import { DeleteAccountComponent } from './Public/Modules/account/delete-account/delete-account.component';
+import { ProfileDetailsComponent } from './Public/Modules/account/profile-details/profile-details.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { UserOrdersComponent } from './Public/Modules/account/user-orders/user-orders.component';
+import { EditProfileComponent } from './Public/Modules/account/edit-profile/edit-profile.component';
+import { CalendarModule } from 'primeng/calendar';
+import { CommonDialogComponent } from './Public/common/common-dialog/common-dialog.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +87,16 @@ import { PriceDetailsComponent } from './Public/shared/price-details/price-detai
     CartHeaderComponent,
     AddressComponent,
     PaymentComponent,
-    PriceDetailsComponent
+    PriceDetailsComponent,
+    BackButtonComponent,
+    OverviewComponent,
+    ProfileDetailsComponent,
+    AddressesComponent,
+    CardsComponent,
+    DeleteAccountComponent,
+    UserOrdersComponent,
+    EditProfileComponent,
+    CommonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,8 +111,8 @@ import { PriceDetailsComponent } from './Public/shared/price-details/price-detai
     ChartModule,
     MultiSelectModule,
     DropdownModule,
-    InputTextModule,
     TagModule,
+    InputTextModule,
     ProgressSpinnerModule,
     IconFieldModule,
     InputIconModule,
@@ -106,7 +125,8 @@ import { PriceDetailsComponent } from './Public/shared/price-details/price-detai
     CheckboxModule,
     PaginatorModule,
     PanelModule,
-    RadioButtonModule
+    RadioButtonModule,
+    CalendarModule
   ],
   providers: [
     MessageService,

@@ -8,17 +8,17 @@
         </a>
         <div class="cart-pages d-flex align-items-center">
           <h6 [class.active]="isActive('/cart')">
-            <a *ngIf="!isActive('/cart')" routerLink="/cart">BAG</a>
+            <a *ngIf="!isActive('/cart')">BAG</a>
             <span *ngIf="isActive('/cart')">BAG</span>
           </h6>
           <span>-----------</span>
           <h6 [class.active]="isActive('/address')">
-            <a *ngIf="!isActive('/address')" routerLink="/address">ADDRESS</a>
+            <a *ngIf="!isActive('/address')">ADDRESS</a>
             <span *ngIf="isActive('/address')">ADDRESS</span>
           </h6>
           <span>-----------</span>
           <h6 [class.active]="isActive('/payment')">
-            <a *ngIf="!isActive('/payment')" routerLink="/payment">PAYMENT</a>
+            <a *ngIf="!isActive('/payment')">PAYMENT</a>
             <span *ngIf="isActive('/payment')">PAYMENT</span>
           </h6>
         </div>

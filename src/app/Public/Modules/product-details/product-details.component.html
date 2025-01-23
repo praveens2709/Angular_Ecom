@@ -1,10 +1,13 @@
 <div class="page-container d-flex flex-column h-100">
   <app-header></app-header>
-  <div class="container-fluid p-0 d-flex animate three fadeInUp flex-grow-1">
+  <div class="container-fluid product-details-div d-flex animate three fadeInUp flex-grow-1 position-relative">
+    <app-back-button></app-back-button>
     <!-- Main Image Container -->
     <div class="product-image-container w-100">
       <div class="product-bg position-relative d-flex justify-content-center align-items-center">
-        <h1 class="position-absolute">DopeShope</h1>
+        <h1 class="position-absolute dope-text">
+          <span class="first-letter">D</span>opeShop<span class="last-letter">e</span>
+      </h1>      
         <img [src]="product?.image" alt="{{ product?.name }}" class="position-absolute w-100" />
       </div>
     </div>
