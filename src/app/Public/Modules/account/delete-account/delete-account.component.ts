@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './delete-account.component.css'
 })
 export class DeleteAccountComponent {
+  isAgreed: boolean = false;
 
+  scrollUp(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

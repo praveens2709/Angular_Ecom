@@ -345,7 +345,8 @@ body {
 .profile-box2 button,
 .edit-remove-address button,
 .save-address-btn,
-.edit-remove-card button {
+.edit-remove-card button,
+.delete-account .delete-btn {
   /* font-family: "Josefin sans", serif; */
   font-size: 15px;
   background: rgb(183, 29, 12);
@@ -368,7 +369,8 @@ body {
 .profile-box2 button:hover,
 .edit-remove-address button:hover,
 .save-address-btn:hover,
-.edit-remove-card button:hover {
+.edit-remove-card button:hover,
+.delete-account .delete-btn:hover {
   background-color: #992603;
 }
 
@@ -518,7 +520,8 @@ label,
 }
 
 .address-section,
-.cards-section {
+.cards-section,
+.delete-account {
   width: 80%;
 
   h6 {
@@ -549,7 +552,8 @@ label,
     width: 50%;
   }
 
-  .cancel-address-btn {
+  .cancel-address-btn,
+  .keep-btn {
     font-size: 15px;
     background: #6c757d;
     color: #ffffff;
@@ -561,7 +565,8 @@ label,
     font-weight: 600;
   }
 
-  .cancel-address-btn:hover {
+  .cancel-address-btn:hover,
+  .keep-btn:hover {
     background: #646464;
   }
 }
