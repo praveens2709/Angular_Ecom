@@ -1,33 +1,90 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart/cart.service';
-import { Subscription } from 'rxjs';
+import { AddressesService } from '../account/addresses/addresses.service';
 
 @Component({
   selector: 'app-address',
   standalone: false,
-  
   templateUrl: './address.component.html',
-  styleUrl: './address.component.css'
+  styleUrl: './address.component.css',
 })
-export class AddressComponent {
+export class AddressComponent implements OnInit {
+  addresses: any[] = [];
   selectedAddress: string | null = null;
+  isDialogVisible = false;
+  dialogTitle = 'Add Address';
+  isEditMode = false;
+  selectedAddressData: any = null;
   priceDetails: any = {};
-  private priceDetailsSub: Subscription | null = null;
+  userId = '1';
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private addressService: AddressesService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
-    // Subscribe to price details from CartService
-    this.priceDetailsSub = this.cartService.getPriceDetails().subscribe((details) => {
+    this.loadAddresses();
+    this.cartService.getPriceDetails().subscribe((details) => {
       this.priceDetails = details;
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.priceDetailsSub) this.priceDetailsSub.unsubscribe();
+  loadAddresses(): void {
+    this.addressService.getAddresses(this.userId).subscribe({
+      next: (data) => {
+        this.addresses = data;
+        if (this.addresses.length > 0) {
+          this.selectedAddress = this.addresses[0].id;
+        }
+      },
+      error: (err) => console.error('Error fetching addresses:', err),
+    });
   }
 
-  isButtonEnabled(): boolean {
-    return this.priceDetails.itemsCount > 0 && this.selectedAddress !== null;
+  openAddDialog(): void {
+    this.isEditMode = false;
+    this.dialogTitle = 'Add New Address';
+    this.selectedAddressData = null;
+    this.isDialogVisible = true;
+  }
+
+  openEditDialog(address: any): void {
+    console.log('Editing Address:', address);
+    this.isEditMode = true;
+    this.dialogTitle = 'Edit Address';
+    this.selectedAddressData = { ...address };
+    this.isDialogVisible = true;
+  }  
+
+  handleAddressSave(address: any): void {
+    if (this.isEditMode && this.selectedAddressData?.id) {
+      this.addressService.updateAddress(this.userId, this.selectedAddressData.id, address).subscribe({
+        next: () => {
+          this.loadAddresses();
+          this.isDialogVisible = false;
+        },
+        error: (err) => console.error('Error updating address:', err),
+      });
+    } else {
+      this.addressService.addAddress(this.userId, address).subscribe({
+        next: () => {
+          this.loadAddresses();
+          this.isDialogVisible = false;
+        },
+        error: (err) => console.error('Error adding address:', err),
+      });
+    }
+  }
+
+  removeAddress(id: string): void {
+    this.addressService.deleteAddress(this.userId, id).subscribe({
+      next: () => this.loadAddresses(),
+      error: (err) => console.error('Error deleting address:', err),
+    });
+  }
+
+  handleDialogClose(): void {
+    this.isDialogVisible = false;
   }
 }

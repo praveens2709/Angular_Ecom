@@ -60,6 +60,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { UserOrdersComponent } from './Public/Modules/account/user-orders/user-orders.component';
 import { EditProfileComponent } from './Public/Modules/account/edit-profile/edit-profile.component';
 import { CalendarModule } from 'primeng/calendar';
+import { AddressFormComponent } from './Public/shared/address-form/address-form.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { CalendarModule } from 'primeng/calendar';
     CardsComponent,
     DeleteAccountComponent,
     UserOrdersComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    AddressFormComponent
   ],
   imports: [
     BrowserModule,

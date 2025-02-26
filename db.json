@@ -74,26 +74,24 @@
       "mobile": "1234567890",
       "addresses": [
         {
-          "id": "a1",
-          "fullName": "John Doe",
-          "street": "123 Main Street",
-          "city": "Springfield",
-          "state": "IL",
-          "postalCode": "62701",
-          "country": "USA",
+          "fullName": "Praveen Sharma",
+          "mobile": "9116577183",
+          "postalCode": "342005",
+          "state": "Rajasthan",
+          "street": "275-A, Bapunagar, Jhalamand",
+          "city": "Jodhpur",
           "type": "Home",
-          "mobile": "1234567890"
+          "id": "xb7zhq1ij"
         },
         {
-          "id": "a2",
-          "fullName": "John Doe",
-          "street": "456 Elm Street",
-          "city": "Springfield",
-          "state": "IL",
-          "postalCode": "62702",
-          "country": "USA",
-          "type": "Work",
-          "mobile": "1234567890"
+          "fullName": "Nikunj Rathi",
+          "mobile": "8955615637",
+          "postalCode": "342003",
+          "state": "Rajasthan",
+          "street": "69, Nikunj Vihar",
+          "city": "Jodhpur",
+          "type": "Home",
+          "id": "2g8406pvq"
         }
       ],
       "cards": [

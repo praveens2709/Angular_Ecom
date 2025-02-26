@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, switchMap, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,31 +17,39 @@ export class AddressesService {
   }
 
   addAddress(userId: string, address: any): Observable<any> {
-    return this.getAddresses(userId).pipe(
-      map((addresses) => [...addresses, address]),
-      map((updatedAddresses) =>
-        this.http.patch(`${this.apiUrl}/${userId}`, { addresses: updatedAddresses })
-      )
+    return this.http.get<any>(`${this.apiUrl}/${userId}`).pipe(
+      switchMap((user) => {
+        if (!user.addresses) {
+          user.addresses = [];
+        }
+        const newAddress = { ...address, id: this.generateId() };
+        user.addresses.push(newAddress);
+        return this.http.patch(`${this.apiUrl}/${userId}`, { addresses: user.addresses });
+      })
     );
-  }
+  }  
 
   updateAddress(userId: string, addressId: string, address: any): Observable<any> {
     return this.getAddresses(userId).pipe(
-      map((addresses) =>
-        addresses.map((a) => (a.id === addressId ? { ...a, ...address } : a))
-      ),
-      map((updatedAddresses) =>
-        this.http.patch(`${this.apiUrl}/${userId}`, { addresses: updatedAddresses })
-      )
+      switchMap((addresses) => {
+        const updatedAddresses = addresses.map((a) =>
+          a.id === addressId ? { ...a, ...address } : a
+        );
+        return this.http.patch(`${this.apiUrl}/${userId}`, { addresses: updatedAddresses });
+      })
     );
   }
 
   deleteAddress(userId: string, addressId: string): Observable<any> {
     return this.getAddresses(userId).pipe(
-      map((addresses) => addresses.filter((a) => a.id !== addressId)),
-      map((updatedAddresses) =>
-        this.http.patch(`${this.apiUrl}/${userId}`, { addresses: updatedAddresses })
-      )
+      switchMap((addresses) => {
+        const updatedAddresses = addresses.filter((a) => a.id !== addressId);
+        return this.http.patch(`${this.apiUrl}/${userId}`, { addresses: updatedAddresses });
+      })
     );
+  }
+
+  private generateId(): string {
+    return Math.random().toString(36).substr(2, 9);
   }
 }

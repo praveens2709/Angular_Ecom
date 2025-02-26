@@ -56,130 +56,13 @@
     </div>
   </div>
 
-  <!-- Add/Edit Dialog -->
-  <p-dialog
-    [(visible)]="isDialogVisible"
-    [header]="dialogTitle"
-    [closable]="true"
-    [style]="{ width: '450px' }"
+  <app-address-form
+    [isDialogVisible]="isDialogVisible"
+    [dialogTitle]="dialogTitle"
+    [addressData]="selectedAddress"
+    (onSave)="handleAddressSave($event)"
+    (onClose)="handleDialogClose()"
   >
-    <form
-      [formGroup]="addressForm"
-      (ngSubmit)="onSubmit()"
-      class="dialog-content"
-    >
-      <!-- Form Fields -->
-      <div class="form-group mb-3">
-        <label for="fullName">Name *</label>
-        <input
-          id="fullName"
-          type="text"
-          formControlName="fullName"
-          class="form-control"
-          placeholder="Enter Name"
-        />
-      </div>
+  </app-address-form>
 
-      <div class="form-group mb-3">
-        <label for="mobile">Mobile *</label>
-        <input
-          id="mobile"
-          type="text"
-          formControlName="mobile"
-          class="form-control"
-          placeholder="Enter Mobile Number"
-        />
-      </div>
-
-      <div class="d-flex mb-3">
-        <div class="form-group me-2 w-50">
-          <label for="postalCode">Pincode *</label>
-          <input
-            id="postalCode"
-            type="text"
-            formControlName="postalCode"
-            class="form-control"
-            placeholder="Enter Pincode"
-          />
-        </div>
-        <div class="form-group w-50">
-          <label for="state">State *</label>
-          <input
-            id="state"
-            type="text"
-            formControlName="state"
-            class="form-control"
-            placeholder="Enter State"
-          />
-        </div>
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="street">Address *</label>
-        <input
-          id="street"
-          type="text"
-          formControlName="street"
-          class="form-control"
-          placeholder="House No, Building, Street, Area"
-        />
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="city">City / District *</label>
-        <input
-          id="city"
-          type="text"
-          formControlName="city"
-          class="form-control"
-          placeholder="Enter City / District"
-        />
-      </div>
-
-      <div class="form-group mb-4">
-        <label>Type of Address *</label>
-        <div class="d-flex align-items-center">
-          <div class="me-3">
-            <p-radioButton
-              name="type"
-              value="Home"
-              formControlName="type"
-              inputId="home"
-              label="Home"
-            ></p-radioButton>
-          </div>
-          <div>
-            <p-radioButton
-              name="type"
-              value="Office"
-              formControlName="type"
-              inputId="office"
-              label="Office"
-            ></p-radioButton>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <!-- Fixed Footer -->
-    <div class="dialog-footer fixed-footer">
-      <button
-        type="button"
-        class="cancel-address-btn rounded-0 py-3 mt-0"
-        (click)="isDialogVisible = false"
-      >
-        Cancel
-      </button>
-      <button
-        type="submit"
-        class="save-address-btn rounded-0 py-3 mt-0"
-        [disabled]="addressForm.invalid"
-      >
-        Save
-      </button>
-    </div>
-  </p-dialog>
-
-  <!-- Delete Confirmation Dialog -->
-  <!-- <p-confirmDialog></p-confirmDialog> -->
 </div>
